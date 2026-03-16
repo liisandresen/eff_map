@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fungitsiidi efektiivsuse kaart</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Title Section -->
+    <div class="title-section">
+        <h3>Helelaiksuse ja võrklaiksuse fungitsiidi tundlikkuse uuring</h3>
+    </div>
+    
+    <!-- Intro Text Section -->
+    <div class="intro-section">
+        <div class="intro-text">
+            <p>
+                Igal aastal korjab METK-i meeskond Eesti teravilja põldudelt helelaiksuse ja võrklaiksuse kahjustusega lehti. 
+                Meie eesmärk on hinnata, kuidas haigust tekitavad seened erinevaid taimekaitsevahendeid taluvad ja kuidas see omadus ajas muutub. 
+                Mida suurem on taluvus teatud fungitsiidi suhtes, seda suurem on oht, et toimeaine muutub taimekaitses väheefektiivseks ning tuleb vahetada mõnda teise toimeaine gruppi kuuluva fungitsiidi vastu.
+            </p>
+            
+            <h4>Mida kaart näitab?</h4>
+            
+            <p>
+                Haigussümptomitega lehti uuritakse laboris. Lehtedest eraldatakse elusad haigustekitajad ning uuritakse katseliselt kui kanget fungitsiidilahust erinevatelt lehtedelt pärit seened taluvad. 
+                Fungitsiidi taluvust tähistab numbriline väärtus - EC50. EC50 näitab, millise kanguse juures pooled haigustekitaja rakud hävivad. 
+                <strong>Mida suurem on EC50, seda vähem efektiivne on uuritav fungitsiid.</strong> 
+                Kokku hindasime kahe haigustekitaja: <em>Zymoseptoria tritici</em> (helelaiksus) ja <em>Pyrenophora teres f. teres</em> (võrklaiksus) taluvust 8 erineva toimeaine suhtes. 
+                Haigust, toimeainet ja uuringuaastat saab valida lehe parempoolselt paneelilt.
+            </p>
+            
+            <p style="font-weight: 600;">Jagasime EC50 väärtused kolme gruppi:</p>
+            
+            <div class="ec50-groups">
+                <div class="ec50-item">
+                    <div class="ec50-circle effective"></div>
+                    <div class="ec50-text">
+                        <strong>EC50 &lt; 0.5</strong> – need haigustekitajad on fungitsiidi suhtes väga tundlikud ja seepärast on taimekaitse efektiivne.
+                    </div>
+                </div>
+                
+                <div class="ec50-item">
+                    <div class="ec50-circle less-effective"></div>
+                    <div class="ec50-text">
+                        <strong>0.5 &lt; EC50 &lt; 5</strong> – need haigustekitajad suudavad taluda madalaid toimeaine kontsentratsioone ja seepärast taimekaitse selle konkreetse toimeainega võib olla vähem efektiivne.
+                    </div>
+                </div>
+                
+                <div class="ec50-item">
+                    <div class="ec50-circle ineffective"></div>
+                    <div class="ec50-text">
+                        <strong>EC50 &gt; 5</strong> – need haigustekitajad on toimeaine suhtes väga vastupidavad ja tõrje selle toimeainega võib olla mitteefektiivne.
+                    </div>
+                </div>
+            </div>
+            
+            <p>
+                Kaardile on märgitud kõige kõrgema EC50 väärtusega haigustekitaja, mis antud põllult tuvastati. 
+            </p>
+            
+            <p style="font-weight: 500;">
+                Antud kaart näitab toimeainete taluvuse ajalist muutust ja on abiks fungitsiidi preparaadi valikul.
+            </p>
+            
+            <p class="note">
+                <strong>NB.</strong> Koordinaatides võib esineda ebatäpsusi.
+            </p>
+            
+            <p class="note" style="margin-top: 15px;">
+                <strong>Küsimused või tagasiside?</strong> Võtke meiega ühendust: <a href="mailto:liis.andresen@metk.agri.ee" style="color: #3498db; text-decoration: none;">liis.andresen@metk.agri.ee</a>
+            </p>
+        </div>
+        
+        <div class="intro-image">
+            <div style="display: flex; flex-direction: row; gap: 10px;">
+                <div class="image-item">
+                    <img src="images/ZT_pilt.jpg" alt="Zymoseptoria tritici">
+                </div>
+                <div class="image-item">
+                    <img src="images/Ptt_pilt.jpg" alt="Pyrenophora teres f. teres">
+                </div>
+            </div>
+            <p class="image-label" style="margin-top: 10px; text-align: center;">Vasakul: helelaiksuse kahjustus, paremal: võrklaiksuse kahjustus (Fotod: Regina Pütsepp)</p>
+        </div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="controls-top">
+                <div class="parameter-section">
+                    <label class="parameter-label">Vali haigus:</label>
+                    <div class="radio-group" id="organismGroup">
+                        <label class="radio-item">
+                            <input type="radio" name="organismType" value="ZT" checked>
+                            Helelaiksus
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="organismType" value="PTT">
+                            Võrklaiksus
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="parameter-section">
+                    <label class="parameter-label">Vali toimeaine:</label>
+                    <div class="radio-group" id="radioGroup">
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="FLX" checked>
+                            Fluksapüroksaad (SDHI)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="BIX">
+                            Biksafeen (SDHI)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="PROD">
+                            Protiokonasool (asoolid)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="TEB">
+                            Tebukonasool (asoolid)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="MEF">
+                            Mefentriflukonasool (asoolid)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="FEN">
+                            Fenpikoksamiid
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="PYR">
+                            Püraklostrobiin (strobiluriin)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="valueType" value="AZO">
+                            Asoksüstrobiin (strobiluriin)
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color effective"></div>
+                        <div class="legend-text">Efektiivne (EC50 ≤ 0.5)</div>
+                    </div>
+                    
+                    <div class="legend-item">
+                        <div class="legend-color less-effective"></div>
+                        <div class="legend-text">Vähem efektiivne (0.5 &lt; EC50 &lt; 5)</div>
+                    </div>
+                    
+                    <div class="legend-item">
+                        <div class="legend-color ineffective"></div>
+                        <div class="legend-text">Mitteefektiivne (EC50 ≥ 5)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="controls-bottom">
+                <div class="parameter-section">
+                    <label class="parameter-label">Vali aasta:</label>
+                    <input type="range" id="yearSlider" class="year-slider" min="2018" max="2025" value="2025" step="1">
+                    <div class="year-marks">
+                        <span>2018</span>
+                        <span>2019</span>
+                        <span>2020</span>
+                        <span>2021</span>
+                        <span>2022</span>
+                        <span>2023</span>
+                        <span>2024</span>
+                        <span>2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>
