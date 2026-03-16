@@ -334,3 +334,20 @@ body {
 .footer-item p:last-child {
     margin-bottom: 0;
 }
+/* Footer Logos */
+.footer-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e9ecef;
+    flex-wrap: wrap;
+}
+
+.footer-logos img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
