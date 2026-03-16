@@ -339,7 +339,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
     margin-top: 30px;
     padding-top: 30px;
     border-top: 1px solid #e9ecef;
@@ -347,7 +347,11 @@ body {
 }
 
 .footer-logos img {
-    height: 60px;
+    max-height: 80px;
+    max-width: 200px;
     width: auto;
+    height: auto;
     object-fit: contain;
+    background-color: white; /* In case logos have transparent backgrounds */
+    padding: 10px;
 }
