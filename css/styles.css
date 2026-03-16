@@ -135,9 +135,7 @@ body {
 /* Main Container */
 .container {
     display: flex;
-    height: calc(100vh - 200px);
-    min-height: 650px;
-    max-height: 800px;
+    height: 800px;
     background: white;
     margin: 0 auto 400px auto;  
     max-width: 1400px;  
