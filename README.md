@@ -12,6 +12,10 @@ eff_map/
 ├── data/
 │   └── fungicides.json    # andmestik
 ├── images/
+│   └── logos/
+│      ├── Eesti-Teadusagentuur-logo-color_RGB-300x94.webp
+│      ├── METK_EE_HORIS_MUST.png
+│      ├── Zymo_logo_tekstita.png
 │   ├── ZT_pilt.jpg        # Zymoseptoria kahjustuse foto
 │   └── Ptt_pilt.jpg       # Pyrenophora kahjustuse foto
 └── README.md              # üldine ja tehniline info
