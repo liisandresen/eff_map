@@ -88,7 +88,7 @@ https://YOUR-USERNAME.github.io/fungicide-map/
 To update the data:
 
 1. Update your CSV file
-2. Run `python generate_json_data.py`
+2. Run `EM_CSV_to_JSON.py`
 3. Upload the new `fungicides.json` to GitHub
 4. Changes appear automatically in 1-2 minutes
 
