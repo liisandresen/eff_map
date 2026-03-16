@@ -31,4 +31,9 @@ Andmete uuendamiseks:
 3. Asenda `fungicides.json` uue versiooniga GitHubis
 4. Uuendused ilmuvad automaatselt 1-2 minuti pärast
 
-
+####################
+ToDo:
+- add copyright
+- change contact
+- jalus korrastada
+- teksti kujundus, graafilised elemendid?
