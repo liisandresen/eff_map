@@ -27,16 +27,16 @@ body {
 
 /* Intro Text Section */
 .intro-section {
-    padding: 25px 0;  /* (was 25px 50px) */
+    padding: 25px 50px;
     background-color: #f8f9fa;
     border-bottom: 2px solid #e9ecef;
     max-width: 1400px;
+    width: 100%;  
     margin: 0 auto;
     display: flex;
     gap: 30px;
     align-items: flex-start;
 }
-
 .intro-text {
     flex: 1;
     padding: 0 50px;  
@@ -139,8 +139,9 @@ body {
     min-height: 650px;
     max-height: 1000px;
     background: white;
-    margin: 0 auto 400px auto;
-    max-width: 1400px;
+    margin: 0 auto 400px auto;  
+    max-width: 1400px;  
+    width: 100%; 
 }
 
 .map-container {
@@ -355,6 +356,6 @@ body {
     width: auto;
     height: auto;
     object-fit: contain;
-    background-color: white; /* In case logos have transparent backgrounds */
+    background-color: white; 
     padding: 10px;
 }
