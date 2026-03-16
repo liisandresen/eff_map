@@ -145,11 +145,12 @@ body {
 .map-container {
     flex: 0 0 70%;
     position: relative;
+    height: 800px;  /* Add explicit height here too */
 }
 
 #map {
     width: 100%;
-    height: 100%;
+    height: 800px;  /* Add explicit height here */
 }
 
 /* Control Panel */
