@@ -137,7 +137,8 @@ body {
     min-height: 650px;
     max-height: 1000px;
     background: white;
-    margin-bottom: 400px;
+    margin: 0 auto 200px auto;  
+    max-width: 1400px;  
 }
 
 .map-container {
