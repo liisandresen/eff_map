@@ -408,6 +408,7 @@ body {
         height: 400px !important;
     }
     
+    /* CONTROL PANEL WITH REORDERING */
     .control-panel {
         flex: none !important;
         width: 100% !important;
@@ -415,6 +416,20 @@ body {
         border-top: 2px solid #d5d8dc;
         max-height: none;
         box-shadow: none;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .controls-bottom {
+        order: -1;  /* Move year slider to TOP */
+        margin-top: 0;
+        padding-top: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .controls-top {
+        order: 0;  /* Disease/fungicide selectors after slider */
     }
     
     /* Footer adjustments */
