@@ -299,7 +299,7 @@ body {
 }
 /* Footer Section */
 .footer-section {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     padding: 20px 50px;
     border-top: 2px solid #e9ecef;
     max-width: 1400px;
@@ -354,7 +354,5 @@ body {
     max-width: 200px;
     width: auto;
     height: auto;
-    object-fit: contain;
-    background-color: #ffffff; 
-    padding: 10px;
+    object-fit: contain;    
 }
