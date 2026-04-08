@@ -300,7 +300,7 @@ body {
 /* Footer Section */
 .footer-section {
     background-color: #f8f9fa;
-    padding: 40px 50px;
+    padding: 20px 50px;
     border-top: 2px solid #e9ecef;
     max-width: 1400px;
     margin: 0 auto;
@@ -350,7 +350,7 @@ body {
 }
 
 .footer-logos img {
-    max-height: 80px;
+    max-height: 100px;
     max-width: 200px;
     width: auto;
     height: auto;
