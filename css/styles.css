@@ -358,39 +358,81 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    /* Remove extra padding */
+    /* Title section */
+    .title-section {
+        padding: 30px 15px;
+    }
+    
+    .title-section h1 {
+        font-size: 18px;
+    }
+    
+    /* Intro section - remove extra padding */
     .intro-section {
         flex-direction: column;
-        padding: 20px 15px;  /* Reduce horizontal padding */
+        padding: 20px 15px;
     }
     
     .intro-text {
-        padding: 0;  /* Remove all padding */
+        padding: 0;
     }
     
     .intro-image {
         flex: 1;
         max-width: 100%;
-        padding: 0;  /* Remove all padding */
+        padding: 0;
         margin-top: 20px;
-    }
-    
-    /* Also fix body overflow */
-    body {
-        overflow-x: hidden;  /* Prevent horizontal scroll */
-    }
-    
-    /* Make sure nothing exceeds screen width */
-    .container,
-    .intro-section,
-    .footer-section {
-        max-width: 100%;
-        overflow-x: hidden;
     }
     
     /* Images should fit screen */
     .image-item img {
         max-width: 100%;
         height: auto;
+    }
+    
+    /* MAP AND CONTROLS - STACK VERTICALLY */
+    .container {
+        flex-direction: column !important;
+        height: auto !important;
+        margin-bottom: 30px;
+    }
+    
+    .map-container {
+        flex: none !important;
+        width: 100% !important;
+        height: 400px !important;
+    }
+    
+    #map {
+        width: 100% !important;
+        height: 400px !important;
+    }
+    
+    .control-panel {
+        flex: none !important;
+        width: 100% !important;
+        border-left: none !important;
+        border-top: 2px solid #d5d8dc;
+        max-height: none;
+        box-shadow: none;
+    }
+    
+    /* Footer adjustments */
+    .footer-section {
+        padding: 20px 15px;
+    }
+    
+    .footer-logos {
+        gap: 20px;
+    }
+    
+    .footer-logos img {
+        max-height: 60px;
+        max-width: 150px;
+    }
+    
+    /* Fix body overflow */
+    body {
+        overflow-x: hidden;
     }
 }
