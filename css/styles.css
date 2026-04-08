@@ -132,12 +132,12 @@ body {
     font-style: italic;
 }
 
-/* Main Container */
+/* Kaardi ala */
 .container {
     display: flex;
     height: 800px;
     background: white;
-    margin: 0 auto 400px auto;  
+    margin: 0 auto 100px auto;  
     max-width: 1400px;  
     width: 100%; 
 }
@@ -145,15 +145,15 @@ body {
 .map-container {
     flex: 0 0 70%;
     position: relative;
-    height: 800px;  /* Add explicit height here too */
+    height: 800px;  
 }
 
 #map {
     width: 100%;
-    height: 800px;  /* Add explicit height here */
+    height: 800px;  
 }
 
-/* Control Panel */
+/* Vasak paneel */
 .control-panel {
     flex: 0 0 28%;
     padding: 20px;
@@ -174,7 +174,7 @@ body {
     padding-top: 20px;
 }
 
-/* Year Slider */
+/* aasta slaider */
 .year-slider {
     width: 100%;
     margin: 10px 0;
@@ -337,7 +337,7 @@ body {
 .footer-item p:last-child {
     margin-bottom: 0;
 }
-/* Footer Logos */
+/* Logod */
 .footer-logos {
     display: flex;
     justify-content: center;
