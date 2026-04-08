@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fungitsiidi efektiivsuse kaart</title>
+    <title>Fungitsiidi resistentsuse kaart</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -17,7 +17,7 @@
     <div class="intro-section">
         <div class="intro-text">
             <p>
-                Igal aastal korjab Maaelu Teadmuskeskuse meeskond Eesti teravilja põldudelt helelaiksuse ja võrklaiksuse kahjustusega lehti. 
+                Igal aastal korjab Maaelu Teadmuskeskuse meeskond Eesti teravilja põldudelt kõrreliste helelaiksuse ja odra võrklaiksuse kahjustusega lehti. 
                 Meie eesmärk on hinnata, kuidas haigust tekitavad seened erinevaid taimekaitsevahendeid taluvad ja kuidas see omadus ajas muutub. 
                 Mida suurem on taluvus teatud fungitsiidi suhtes, seda suurem on oht, et toimeaine muutub taimekaitses väheefektiivseks ning tuleb vahetada mõnda teise toimeaine gruppi kuuluva fungitsiidi vastu.
             </p>
@@ -28,7 +28,7 @@
                 Haigussümptomitega lehti uuritakse laboris. Lehtedest eraldatakse elusad haigustekitajad ning uuritakse katseliselt kui kanget fungitsiidilahust erinevatelt lehtedelt pärit seened taluvad. 
                 Fungitsiidi taluvust tähistab numbriline väärtus - EC50. EC50 näitab, millise kanguse juures pooled haigustekitaja rakud hävivad. 
                 <strong>Mida suurem on EC50, seda vähem efektiivne on uuritav fungitsiid.</strong> 
-                Kokku hindasime kahe haigustekitaja: <em>Zymoseptoria tritici</em> (helelaiksus) ja <em>Pyrenophora teres f. teres</em> (võrklaiksus) taluvust 8 erineva toimeaine suhtes. 
+                Kokku hindasime kahe haigustekitaja: <em>Zymoseptoria tritici</em> (kõrreliste helelaiksus) ja <em>Pyrenophora teres f. teres</em> (odra võrklaiksus) taluvust 8 erineva toimeaine suhtes. 
                 Haigust, toimeainet ja uuringuaastat saab valida lehe parempoolselt paneelilt.
             </p>
             
@@ -100,11 +100,11 @@
                     <div class="radio-group" id="organismGroup">
                         <label class="radio-item">
                             <input type="radio" name="organismType" value="ZT" checked>
-                            Helelaiksus
+                            Kõrreliste helelaiksus talinisul
                         </label>
                         <label class="radio-item">
                             <input type="radio" name="organismType" value="PTT">
-                            Võrklaiksus
+                            Odra võrklaiksus
                         </label>
                     </div>
                 </div>
@@ -150,17 +150,17 @@
                 <div class="legend">
                     <div class="legend-item">
                         <div class="legend-color effective"></div>
-                        <div class="legend-text">Efektiivne (EC50 ≤ 0.5)</div>
+                        <div class="legend-text">Tundlik (EC50 ≤ 0.5)</div>
                     </div>
                     
                     <div class="legend-item">
                         <div class="legend-color less-effective"></div>
-                        <div class="legend-text">Vähem efektiivne (0.5 &lt; EC50 &lt; 5)</div>
+                        <div class="legend-text">Vähem tundlik (0.5 &lt; EC50 &lt; 5)</div>
                     </div>
                     
                     <div class="legend-item">
                         <div class="legend-color ineffective"></div>
-                        <div class="legend-text">Mitteefektiivne (EC50 ≥ 5)</div>
+                        <div class="legend-text">Mittetundlik (EC50 ≥ 5)</div>
                     </div>
                 </div>
             </div>
