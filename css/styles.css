@@ -356,3 +356,41 @@ body {
     height: auto;
     object-fit: contain;    
 }
+
+@media screen and (max-width: 768px) {
+    /* Remove extra padding */
+    .intro-section {
+        flex-direction: column;
+        padding: 20px 15px;  /* Reduce horizontal padding */
+    }
+    
+    .intro-text {
+        padding: 0;  /* Remove all padding */
+    }
+    
+    .intro-image {
+        flex: 1;
+        max-width: 100%;
+        padding: 0;  /* Remove all padding */
+        margin-top: 20px;
+    }
+    
+    /* Also fix body overflow */
+    body {
+        overflow-x: hidden;  /* Prevent horizontal scroll */
+    }
+    
+    /* Make sure nothing exceeds screen width */
+    .container,
+    .intro-section,
+    .footer-section {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    /* Images should fit screen */
+    .image-item img {
+        max-width: 100%;
+        height: auto;
+    }
+}
