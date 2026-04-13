@@ -73,11 +73,11 @@ body {
 }
 
 .photo-credit {
-    font-size: 11px;
+    font-size: 10px;
     color: #7f8c8d;
-    margin-top: 10px;
+    margin-top: 4px;
     font-style: italic;
-    text-align: center;
+    text-align: right;
 }
 
 .intro-section p {
