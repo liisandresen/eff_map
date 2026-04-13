@@ -34,6 +34,7 @@ body {
     width: 100%;  
     margin: 0 auto;
     display: flex;
+    flex-direction: row;
     gap: 30px;
     align-items: flex-start;
 }
@@ -370,7 +371,7 @@ body {
     
     /* Intro section - remove extra padding */
     .intro-section {
-        flex-direction: column;
+        flex-direction: column !important;
         padding: 20px 15px;
     }
     
