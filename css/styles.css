@@ -11,10 +11,11 @@ body {
         url('../images/aare_foto.jpg'),
         url('../images/aare_foto.jpg');
     background-position: 
-        left center,
-        right center;
-    background-repeat: repeat-y, repeat-y;
-    background-size: 150px auto, 150px auto;
+        left top,
+        right top;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 150px 100%, 150px 100%;
+    background-attachment: fixed;
 }
 
 /* Pealkiri */
