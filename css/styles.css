@@ -392,7 +392,7 @@ body {
 
 @media screen and (max-width: 768px) {
     body {
-        background-image: none;  /* Add this at the top of mobile styles */
+        background-image: none;  
         background-color: #f5f5f5;
     }    
     
@@ -405,7 +405,6 @@ body {
         font-size: 18px;
     }
     
-    /* Intro section - remove extra padding */
     .intro-section {
         flex-direction: column;
         padding: 20px 15px;
@@ -422,13 +421,11 @@ body {
         margin-top: 20px;
     }
     
-    /* Images should fit screen */
     .image-item img {
         max-width: 100%;
         height: auto;
     }
     
-    /* MAP AND CONTROLS - STACK VERTICALLY */
     .container {
         flex-direction: column !important;
         height: auto !important;
@@ -446,7 +443,6 @@ body {
         height: 400px !important;
     }
     
-    /* CONTROL PANEL WITH REORDERING */
     .control-panel {
         flex: none !important;
         width: 100% !important;
@@ -459,7 +455,7 @@ body {
     }
     
     .controls-bottom {
-        order: -1;  /* Move year slider to TOP */
+        order: -1;  
         margin-top: 0;
         padding-top: 0;
         padding-bottom: 20px;
@@ -467,10 +463,9 @@ body {
     }
     
     .controls-top {
-        order: 0;  /* Disease/fungicide selectors after slider */
+        order: 0; 
     }
     
-    /* Footer adjustments */
     .footer-section {
         padding: 20px 15px;
     }
@@ -484,7 +479,6 @@ body {
         max-width: 150px;
     }
     
-    /* Fix body overflow */
     body {
         overflow-x: hidden;
     }
