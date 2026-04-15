@@ -14,14 +14,14 @@ body {
         left top,
         right top;
     background-repeat: no-repeat, no-repeat;
-    background-size: 150px 100%, 150px 100%;
+    background-size: 250px 100%, 250px 100%;
     background-attachment: fixed;
 }
 
 /* Pealkiri */
 .title-section {
     padding: 60px 20px;
-    background-color: #ffffff;
+    background-color: transparent;
     border-bottom: 2px solid #e9ecef;
     text-align: center;
 }
