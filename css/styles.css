@@ -282,7 +282,8 @@ body {
     padding: 15px;
     border-radius: 8px;
     border: 1px solid #e9ecef;
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
 }
 
 .legend-item {
