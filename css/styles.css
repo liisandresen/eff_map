@@ -426,6 +426,23 @@ body {
     margin-bottom: 0;
 }
 
+.project-list {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.project-list li {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.8;
+}
+
+.project-list li:last-child {
+    margin-bottom: 0;
+}
+
 /* Contact section styling */
 .footer-contact p {
     font-size: 15px;  /* Slightly larger */
