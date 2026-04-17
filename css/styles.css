@@ -462,10 +462,10 @@ body {
 }
 
 .last-updated {
-    font-size: 12px;
-    color: #7f8c8d;
-    font-style: italic;
-    margin-top: 10px;
+    font-size: 12px !important;
+    color: #7f8c8d !important;
+    font-style: italic !important;
+    margin-top: 10px !important;
 }
 
 /* Logod */
