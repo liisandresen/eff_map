@@ -197,6 +197,7 @@ body {
     position: relative;
     top: -4px;
     transition: all 0.2s ease;
+    z-index: 1;
 }
 
 .info-icon::before {
@@ -224,7 +225,7 @@ body {
     font-weight: normal;
     line-height: 1.5;
     width: 180px;
-    z-index: 1000;
+    z-index: 10000;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: opacity 0.3s, visibility 0.3s;
 }
