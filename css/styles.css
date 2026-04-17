@@ -461,6 +461,13 @@ body {
     text-decoration: underline;
 }
 
+.last-updated {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 10px;
+}
+
 /* Logod */
 .footer-logos {
     display: flex;
