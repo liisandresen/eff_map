@@ -189,12 +189,13 @@ body {
     height: 16px;
     border: 1.5 px solid #3498db;
     border-radius: 50%;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-style: italic;
     color: #3498db;
     cursor: help;
     position: relative;
+    top: -2px;
     transition: all 0.2s ease;
 }
 
