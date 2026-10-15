@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interaktiivne kaart kõrreliste helelaiksuse ja odra võrklaiksuse tekitajate fungitsiiditundlikkusest Eesti põldudel.">
+    <title>Fungitsiiditundlikkuse kaart – Maaelu Teadmuskeskus</title>
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="vendor/leaflet/leaflet.js" defer></script>
+    <script src="js/map.js" defer></script>
+</head>
+<body>
+    <!-- Tundlikkusgruppide kujundid; kasutatakse legendis, kaardil ja hüpikaknas -->
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+        <symbol id="shape-sensitive" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/></symbol>
+        <symbol id="shape-reduced" viewBox="0 0 20 20"><path d="M10 1.75 18.75 17.75H1.25z"/></symbol>
+        <symbol id="shape-insensitive" viewBox="0 0 20 20"><rect x="3.5" y="3.5" width="13" height="13"/></symbol>
+    </svg>
+
+    <header class="page-header">
+        <h1>Fungitsiiditundlikkuse kaart</h1>
+        <p class="page-header__subtitle">Mis toimub Eesti põldudel?</p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="intro__photos">
+                <figure>
+                    <img src="images/ZT_pilt_r.jpg" alt="Kõrreliste helelaiksuse kahjustus talinisul">
+                    <figcaption>
+                        Kõrreliste helelaiksus talinisul
+                        <span class="photo-credit">Foto: Regina Pütsepp</span>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="images/Ptt_pilt_r.jpg" alt="Odra võrklaiksuse kahjustus odral">
+                    <figcaption>
+                        Odra võrklaiksus
+                        <span class="photo-credit">Foto: Regina Pütsepp</span>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="intro__text">
+                <p>
+                    Aastate jooksul võivad taimekaitsevahendid kaotada efektiivsust. Selle põhjuseks on taimehaiguste
+                    tekitajate areng, mis võimaldab neil pritsitava taimekaitsevahendi kogusega toime tulla.
+                    <strong>Maaelu Teadmuskeskuse (METK) taimekaitse</strong> töörühm on jälginud kõrreliste helelaiksuse
+                    ja odra võrklaiksuse fungitsiiditundlikkuse arengut juba aastaid. Käesoleva kaardi abil teeme kogutud
+                    informatsiooni kättesaadavamaks kõikidele huvilistele. <strong>Kaart aitab taimekasvatajatel teha
+                    teadlikumaid otsuseid taimekaitsevahendite valikul ja uurida toimeaine efektiivsuse muutust ajas.</strong>
+                </p>
+
+                <h2>Mida kaart näitab?</h2>
+                <p>
+                    Haigussümptomitega lehti uuritakse laboris. Lehtedest eraldatakse elusad haigustekitajad ning uuritakse
+                    katseliselt, kui kanget fungitsiidilahust erinevatelt lehtedelt pärit seened taluvad. Kokku hindasime
+                    kahe haigustekitaja: <em>Zymoseptoria tritici</em> (kõrreliste helelaiksus) ja <em>Pyrenophora teres</em>
+                    f. <em>teres</em> (odra võrklaiksus) taluvust 8 erineva toimeaine suhtes. Vastavalt toimeaine taluvusele
+                    on haigustekitajad jaotatud kolme tundlikkuse gruppi: tundlikud, vähem tundlikud ja mittetundlikud.
+                    Haigust ja toimeainet saab valida kaardi parempoolselt paneelilt. Ajaribalt saab valida huvipakkuva
+                    uuringuaasta.
+                </p>
+                <p>
+                    Kaardile on märgitud kõige kõrgema taluvusega haigustekitaja, mis antud põllult tuvastati. Klikkides
+                    põllu tähisel saab lisainfot testitud haigustekitajate arvu ja nende fungitsiidi taluvuse kohta.
+                </p>
+                <p class="note"><strong>NB.</strong> Koordinaadid on 0,5 kilomeetrise täpsusega.</p>
+            </div>
+        </section>
+
+        <section class="map-layout" aria-label="Kaart ja valikud">
+            <div class="map-area">
+                <div id="map" class="map" role="region" aria-label="Kaart"></div>
+                <div id="mapStatus" class="map-status" role="status"></div>
+                <noscript><p class="map-status">Kaardi kuvamiseks luba brauseris JavaScript.</p></noscript>
+            </div>
+
+            <form id="mapControls" class="map-panel" aria-label="Kaardi valikud">
+                <section class="panel-block" aria-labelledby="legendTitle">
+                    <h2 id="legendTitle" class="panel-block__title">Tundlikkusgrupid</h2>
+                    <details class="legend-item">
+                        <summary>
+                            <svg class="shape shape--sensitive" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><use href="#shape-sensitive"/></svg>
+                            <span>Tundlik (EC<sub>50</sub> ≤ 0,5 mg/l)</span>
+                            <span class="legend-item__toggle" aria-hidden="true">?</span>
+                        </summary>
+                        <p>Haigustekitaja on fungitsiidi suhtes väga tundlik. Taimekaitse on efektiivne.</p>
+                    </details>
+                    <details class="legend-item">
+                        <summary>
+                            <svg class="shape shape--reduced" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><use href="#shape-reduced"/></svg>
+                            <span>Vähem tundlik (0,5 &lt; EC<sub>50</sub> &lt; 5 mg/l)</span>
+                            <span class="legend-item__toggle" aria-hidden="true">?</span>
+                        </summary>
+                        <p>Haigustekitaja tundlikkus toimeaine suhtes on vähenenud. Kaaluge toimeaine vahetamist.</p>
+                    </details>
+                    <details class="legend-item">
+                        <summary>
+                            <svg class="shape shape--insensitive" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><use href="#shape-insensitive"/></svg>
+                            <span>Mittetundlik (EC<sub>50</sub> ≥ 5 mg/l)</span>
+                            <span class="legend-item__toggle" aria-hidden="true">?</span>
+                        </summary>
+                        <p>
+                            Haigustekitaja on toimeaine suhtes resistentne. Taimekaitse selle fungitsiidiga võib olla
+                            mitteefektiivne, võimalusel vahetage toimeainerühma.
+                        </p>
+                    </details>
+                </section>
+
+                <fieldset class="panel-block">
+                    <legend class="panel-block__title">Vali haigus</legend>
+                    <label class="choice">
+                        <input type="radio" name="disease" value="ZT" data-latin="Zymoseptoria tritici" checked>
+                        Kõrreliste helelaiksus talinisul
+                    </label>
+                    <label class="choice">
+                        <input type="radio" name="disease" value="PTT" data-latin="Pyrenophora teres f. teres">
+                        Odra võrklaiksus
+                    </label>
+                </fieldset>
+
+                <fieldset class="panel-block">
+                    <legend class="panel-block__title">Vali toimeaine</legend>
+                    <label class="choice"><input type="radio" name="fungicide" value="FLX" checked> Fluksapüroksaad (SDHI)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="BIX"> Biksafeen (SDHI)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="PROD"> Protiokonasool (asoolid)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="TEB"> Tebukonasool (asoolid)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="MEF"> Mefentriflukonasool (asoolid)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="FEN"> Fenpikoksamiid (pikolinamiid)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="PYR"> Püraklostrobiin (strobiluriin)</label>
+                    <label class="choice"><input type="radio" name="fungicide" value="AZO"> Asoksüstrobiin (strobiluriin)</label>
+                </fieldset>
+
+                <div class="panel-block year-field">
+                    <div class="year-field__head">
+                        <label for="yearSlider" class="panel-block__title">Vali aasta</label>
+                        <span id="yearValue" class="year-field__value" aria-hidden="true"></span>
+                    </div>
+                    <input type="range" id="yearSlider" class="year-slider" step="1" disabled>
+                    <div id="yearMarks" class="year-marks" aria-hidden="true"></div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <section>
+            <h2>METKi taimekaitse resistentsuse töörühm</h2>
+            <p>
+                Andres Mäe, Riinu Kiiker, Liis Andresen, Regina Pütsepp, Lee Põllumaa, Kersti Lilleväli, Liina Kann,
+                Silvia Pihu, Pille Sooväli
+            </p>
+        </section>
+
+        <section>
+            <h2>Projektid</h2>
+            <ul class="project-list">
+                <li>
+                    <strong>PA1-RUP-RESPEST</strong> „Teraviljadel ja rapsil levivate taimekahjustajate
+                    pestitsiidiresistentsuse ja bioloogiliste taimekaitsevahendite uuring“ (01.01.2022–31.12.2024),
+                    rahastas Maaeluministeerium.
+                </li>
+                <li>
+                    „Fungitsiidi resistentsuse levik nisu helelaiksust ja odra ramularioosi põhjustavate haigustekitajate
+                    <em>Zymoseptoria tritici</em> ja <em>Ramularia collo-cygni</em> populatsioonides“
+                    (01.03.2020–30.12.2022), rahastas Maaeluministeerium.
+                </li>
+                <li>
+                    <strong>PSG827</strong> „Fungitsiidiresistentse <em>Zymoseptoria tritici</em> populatsiooni areng ja
+                    kohastumus Eestis“ (01.01.2023–31.12.2027), rahastab SA Eesti Teadusagentuur.
+                </li>
+            </ul>
+        </section>
+
+        <div>
+            <p>
+                <strong>Küsimused või tagasiside?</strong><br>
+                <a href="mailto:liis.andresen@metk.agri.ee">liis.andresen@metk.agri.ee</a>
+            </p>
+            <p class="last-updated">Viimati uuendatud: <time datetime="2026-04-17">17.04.2026</time></p>
+        </div>
+
+        <div class="page-footer__logos">
+            <img src="images/logos/METK_EE_HORIS_MUST.png" alt="METK logo" loading="lazy">
+            <img src="images/logos/Zymo_logo_tekstita.png" alt="Zymoseptoria logo" loading="lazy">
+            <img src="images/logos/Eesti-Teadusagentuur-logo-color_RGB-300x94.webp" alt="Eesti Teadusagentuur logo" loading="lazy">
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,545 @@
+/*
+ * Fungitsiiditundlikkuse kaart
+ * Värvid ja kirjatüübid: METKi brändijuhend (30.11.2022).
+ */
+
+:root {
+    --metk-green: #c4ca2e;
+    --metk-grey: #f2f2f2;
+    --color-text: #000;
+    --color-surface: #fff;
+    --color-line: #000;
+    --color-line-soft: #bdbdbd;
+
+    /* Tundlikkusgrupid: METKi infograafika värvid. Kujund eristab gruppe ka ilma värvita. */
+    --color-sensitive: #c4ca2e;
+    --color-reduced: #fbba69;
+    --color-insensitive: #d17a5d;
+
+    /* Brändi fonte kasutatakse, kui need on seadmes või asutuse lehel olemas (vt README) */
+    --font-body: Roboto, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --font-heading: Manuale, Georgia, "Times New Roman", serif;
+
+    --content-width: 87.5rem;
+    --gutter: 3rem;
+    --map-height: 50rem;
+}
+
+/* Põhi */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--metk-grey);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+p,
+ul,
+dl,
+dd,
+figure {
+    margin: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-line);
+    outline-offset: 2px;
+}
+
+.svg-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* Päis */
+.page-header {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 3rem var(--gutter) 2.5rem;
+    background-color: var(--metk-green);
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.page-header__subtitle {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+}
+
+/* Sissejuhatus */
+.intro {
+    display: flex;
+    gap: 3.5rem;
+    align-items: flex-start;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 2.5rem var(--gutter) 3rem;
+}
+
+.intro__photos {
+    display: flex;
+    flex: 0 0 15.625rem;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.intro__photos figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.35;
+}
+
+.photo-credit {
+    display: block;
+    margin-top: 0.125rem;
+    font-size: 0.8125rem;
+    font-style: italic;
+}
+
+.intro__text {
+    max-width: 68ch;
+}
+
+.intro__text > * + * {
+    margin-top: 1rem;
+}
+
+.intro__text p {
+    line-height: 1.65;
+}
+
+.intro__text h2 {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.intro__text h2 + p {
+    margin-top: 0.5rem;
+}
+
+.note {
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+/* Kaart ja valikud */
+.map-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(18rem, 3fr);
+    max-width: var(--content-width);
+    height: var(--map-height);
+    margin: 0 auto 3rem;
+    border: 1px solid var(--color-line);
+    background-color: var(--color-surface);
+}
+
+.map-area {
+    position: relative;
+}
+
+.map {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    font-family: var(--font-body);
+}
+
+.map-status {
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    z-index: 1;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--color-line);
+    background-color: var(--color-surface);
+    font-size: 0.875rem;
+    text-align: center;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.map-status:empty {
+    padding: 0;
+    border: 0;
+}
+
+.map-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 0;
+    padding: 1.25rem 1.5rem;
+    overflow-y: auto;
+    border-left: 1px solid var(--color-line);
+    font-size: 0.9375rem;
+}
+
+.panel-block {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.panel-block + .panel-block {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line-soft);
+}
+
+.panel-block__title {
+    display: block;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    font-size: inherit;
+    font-weight: 700;
+}
+
+/* Ujuv legend jääb välja sisse, mitte välja ülemisele joonele */
+legend.panel-block__title {
+    float: left;
+    width: 100%;
+}
+
+legend.panel-block__title + * {
+    clear: left;
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.15rem 0;
+    cursor: pointer;
+}
+
+.choice input {
+    flex: none;
+    margin: 0;
+    accent-color: var(--color-text);
+}
+
+/* Legend */
+.legend-item + .legend-item {
+    margin-top: 0.25rem;
+}
+
+.legend-item summary {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.2rem 0;
+    cursor: pointer;
+    list-style: none;
+}
+
+.legend-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.legend-item__toggle {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    border: 1px solid var(--color-line);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.legend-item summary:hover .legend-item__toggle,
+.legend-item[open] .legend-item__toggle {
+    background-color: var(--metk-green);
+}
+
+.legend-item p {
+    margin: 0.25rem 0 0.5rem 1.625rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+/* Aastavalik */
+.year-field {
+    margin-top: auto;
+}
+
+.year-field__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.year-field__head .panel-block__title {
+    margin-bottom: 0;
+}
+
+.year-field__value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.year-slider {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0 0.25rem;
+    accent-color: var(--color-text);
+    cursor: pointer;
+}
+
+.year-slider:disabled {
+    cursor: default;
+}
+
+.year-marks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Tundlikkusgruppide kujundid */
+.shape {
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    overflow: visible;
+    stroke: var(--color-line);
+    stroke-width: 1.75;
+    stroke-linejoin: round;
+}
+
+.shape--sensitive {
+    fill: var(--color-sensitive);
+}
+
+.shape--reduced {
+    fill: var(--color-reduced);
+}
+
+.shape--insensitive {
+    fill: var(--color-insensitive);
+}
+
+.map-marker .shape {
+    width: 100%;
+    height: 100%;
+}
+
+/* Hüpikaken */
+.popup p {
+    margin: 0;
+}
+
+.popup .popup__title {
+    margin-bottom: 0.5em;
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.popup__details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.2em 0.75em;
+}
+
+.popup__details dt {
+    font-weight: 700;
+}
+
+.popup .popup__subtitle {
+    margin-top: 0.75em;
+    padding-top: 0.6em;
+    border-top: 1px solid var(--color-line-soft);
+    font-weight: 700;
+}
+
+.popup__groups {
+    display: grid;
+    gap: 0.25em;
+    margin-top: 0.4em;
+    padding: 0;
+    list-style: none;
+}
+
+.popup__groups li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.popup__groups .shape {
+    width: 1em;
+    height: 1em;
+}
+
+/* Jalus */
+.page-footer {
+    display: grid;
+    gap: 2rem;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 2.5rem var(--gutter);
+    border-top: 1px solid var(--color-line);
+    background-color: var(--color-surface);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.page-footer h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.project-list {
+    padding-left: 1.25rem;
+}
+
+.project-list li + li {
+    margin-top: 0.75rem;
+}
+
+.last-updated {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    font-style: italic;
+}
+
+.page-footer__logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-line-soft);
+}
+
+.page-footer__logos img {
+    width: auto;
+    height: 5rem;
+}
+
+/* Kitsas ekraan */
+@media (max-width: 768px) {
+    :root {
+        --gutter: 1rem;
+    }
+
+    .page-header {
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.625rem;
+    }
+
+    .page-header__subtitle {
+        font-size: 1.0625rem;
+    }
+
+    .intro {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .intro__photos {
+        display: grid;
+        flex: none;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .map-layout {
+        grid-template-columns: minmax(0, 1fr);
+        height: auto;
+        margin-bottom: 2rem;
+        border-right: 0;
+        border-left: 0;
+    }
+
+    .map-area {
+        height: 25rem;
+    }
+
+    .map-panel {
+        overflow-y: visible;
+        border-top: 1px solid var(--color-line);
+        border-left: 0;
+    }
+
+    /* Aastavalik kohe kaardi all */
+    .map-panel .year-field {
+        order: -1;
+        margin-top: 0;
+        padding-top: 0;
+        padding-bottom: 1.25rem;
+        border-top: 0;
+        border-bottom: 1px solid var(--color-line-soft);
+    }
+
+    .page-footer__logos {
+        gap: 1.25rem 2rem;
+    }
+
+    .page-footer__logos img {
+        height: 3.75rem;
+    }
+}
+
+/* Nisupildid lehe servades ainult väga laial ekraanil */
+@media (min-width: 1851px) {
+    body {
+        background-image: url("../images/nisu_k.jpg"), url("../images/nisu_k.jpg");
+        background-position: left top, right top;
+        background-repeat: no-repeat;
+        background-size: 200px 100%;
+        background-attachment: fixed;
+    }
+}
