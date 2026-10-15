@@ -74,3 +74,10 @@ Põllu tähis näitab sellelt põllult leitud suurima EC50 väärtusega isolaadi
 Piirid on kirjas failis `js/map.js` ja legendis failis `index.html`; muutmisel tuleb uuendada
 mõlemat.
 
+## Litsents
+
+Kood (HTML, CSS, JavaScript, Pythoni skript): MIT.
+Andmed (data/fungicides.json): CC BY 4.0. Andmete kasutamisel viita Maaelu Teadmuskeskusele (METK).
+
+
+
