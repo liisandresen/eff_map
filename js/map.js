@@ -39,6 +39,7 @@
     const yearValue = document.getElementById('yearValue');
     const yearMarks = document.getElementById('yearMarks');
     const statusBox = document.getElementById('mapStatus');
+    const summaryBox = document.getElementById('mapSummary');
 
     if (typeof L === 'undefined') {
         setStatus(MESSAGES.mapError);
@@ -150,7 +151,81 @@
             year,
         };
         locations.forEach((location) => createMarker(location, selection).addTo(markerLayer));
+        updateSummary(locations);
     }
+    
+    // Kokkuvõte: testitud isolaatide jaotus tundlikkusgruppidesse kõigil näidatud põldudel
+    function updateSummary(locations) {
+        const counts = Object.fromEntries(GROUPS.map((group) => [group.id, 0]));
+        for (const location of locations) {
+            for (const group of GROUPS) {
+                counts[group.id] += location.counts[group.id];
+            }
+        }
+        const total = GROUPS.reduce((sum, group) => sum + counts[group.id], 0);
+
+        summaryBox.hidden = total === 0;
+        if (total === 0) {
+            summaryBox.replaceChildren();
+            return;
+        }
+
+        const title = createElement('p', 'map-summary__title', `Proove kokku: ${total}`);
+        summaryBox.replaceChildren(title, createPie(counts, total));
+    }
+
+    // Sektordiagramm puhta SVG-na, ilma lisateegita
+    function createPie(counts, total) {
+        const size = 120;
+        const radius = size / 2;
+        const svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('class', 'map-summary__pie');
+        svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+        svg.setAttribute('role', 'img');
+        const labels = GROUPS
+            .filter((group) => counts[group.id] > 0)
+            .map((group) => `${group.label} ${Math.round((counts[group.id] / total) * 100)}%`);
+        svg.append(createSvgElement('title', {}, labels.join(', ')));
+
+        let angle = -Math.PI / 2; // algab ülevalt
+        for (const group of GROUPS) {
+            const value = counts[group.id];
+            if (value === 0) {
+                continue;
+            }
+            const slice = (value / total) * 2 * Math.PI;
+            // Täisring joonistatakse ringina, sest kaar sama algus- ja lõpp-punktiga ei joonistu
+            if (value === total) {
+                svg.append(createSvgElement('circle', {
+                    cx: radius, cy: radius, r: radius, class: `pie-slice pie-slice--${group.id}`,
+                }));
+                break;
+            }
+            const start = pointOnCircle(radius, angle);
+            angle += slice;
+            const end = pointOnCircle(radius, angle);
+            const path = `M ${radius} ${radius} L ${start} A ${radius} ${radius} 0 ${slice > Math.PI ? 1 : 0} 1 ${end} Z`;
+            svg.append(createSvgElement('path', { d: path, class: `pie-slice pie-slice--${group.id}` }));
+        }
+        return svg;
+    }
+
+
+    function pointOnCircle(radius, angle) {
+        return `${radius + radius * Math.cos(angle)} ${radius + radius * Math.sin(angle)}`;
+    }
+
+    function createSvgElement(name, attributes, text) {
+        const element = document.createElementNS(SVG_NS, name);
+        for (const [key, value] of Object.entries(attributes)) {
+            element.setAttribute(key, value);
+        }
+        if (text !== undefined) {
+            element.textContent = text;
+        }
+        return element;
+    }
+    
 
     // Kirjete koondamine põldude kaupa; põllu grupp määratakse suurima EC50 järgi
     function groupByLocation(disease, fungicide, year) {
